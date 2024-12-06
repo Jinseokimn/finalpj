@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>여행 추천 서비스</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🌍 여행 추천 서비스</h1>
+        </header>
+        
+        <main>
+            <form id="travel-form">
+                <div class="form-group">
+                    <label for="travel-style">여행 스타일</label>
+                    <select id="travel-style" name="travel_style" required>
+                        <option value="adventure">모험</option>
+                        <option value="relaxation">휴양</option>
+                        <option value="cultural">문화 탐방</option>
+                        <option value="nature">자연 여행</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="destination">희망 지역</label>
+                    <input type="text" id="destination" name="destination" placeholder="예: 제주도, 유럽" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="duration">여행 기간 (일)</label>
+                    <input type="number" id="duration" name="duration" min="1" max="30" required>
+                </div>
+
+                <div class="form-group budget-group">
+                    <label>예산 범위</label>
+                    <div class="budget-inputs">
+                        <input type="number" id="min-budget" name="min_budget" placeholder="최소 예산" min="0" required>
+                        <span>~</span>
+                        <input type="number" id="max-budget" name="max_budget" placeholder="최대 예산" min="0" required>
+                    </div>
+                </div>
+
+                <button type="submit">여행 추천 받기</button>
+            </form>
+
+            <div id="recommendation-result" class="result-container">
+                <!-- AI 추천 결과가 여기에 표시됩니다 -->
+            </div>
+        </main>
+
+        <footer>
+            <p>© 2024 여행 추천 서비스. Powered by Claude AI</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
