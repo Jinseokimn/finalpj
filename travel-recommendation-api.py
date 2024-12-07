@@ -6,6 +6,18 @@ import uvicorn
 
 app = FastAPI()
 
+from fastapi.middleware.cors import CORSMiddleware
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["https://https://34.212.114.218/"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
+
+
 class TravelRequest(BaseModel):
     travel_style: str = Field(default="default", description="여행 스타일")
     destination: str = Field(default="default destination", description="목적지")
