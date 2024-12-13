@@ -10,7 +10,7 @@ from fastapi.middleware.cors import CORSMiddleware
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["https://https://34.212.114.218/"],
+    allow_origins=["http://34.212.114.218/"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -21,7 +21,7 @@ app.add_middleware(
 class TravelRequest(BaseModel):
     travel_style: str = Field(default="default", description="여행 스타일")
     destination: str = Field(default="default destination", description="목적지")
-    duration: int = Field(default=1, ge=1, le=30, description="여행 기간")
+    duration: int = Field(default=1, ge=1, le=31, description="여행 기간")
     min_budget: int = Field(default=0, ge=0, description="최소 예산")
     max_budget: int = Field(default=1000, ge=0, description="최대 예산")
 
@@ -52,8 +52,8 @@ def call_claude_sonnet(prompt: str):
             contentType="application/json"
         )
         
-        response_body = json.loads(response['body'].read())
-        return response_body['content'][0]['text']
+        response_body = json.loads(response['body'].read().decode("utf-8"))
+        return response_body["conpletions"]['content'][0][data]["text"]
     
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"AI 호출 실패: {str(e)}")
